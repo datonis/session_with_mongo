@@ -8,4 +8,4 @@ The sample need modules as follows:
 - express
 - express-session
 - connect-mongo
-
+- uuid
