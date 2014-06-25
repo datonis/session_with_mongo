@@ -1,19 +1,23 @@
 var express = require('express');
 var session = require('express-session');
 var mongodb = require('connect-mongo')(session);
+var uuid = require('uuid');
 
 var app = express();
 var port = 1025;
 
 var sessionStore = new mongodb({
-  db: 'user_authtication',
-  collection: 'sessions',
   host: 'localhost',
-  port: 27017
+  port: 27017,
+  db: 'user_authentication',
+  collection: 'sessions',
+  defaultExpirationTime: 6 * 1000
 });
 
 app.use(session({
-  secret: "Hi, Septem",
+  name: 'SeptemCookie',
+  secret: "Septem GO GO NIPPON!",
+  genid: uuid.v1,
   store: sessionStore,
   cookie: {
     maxAge: 60 * 1000
@@ -21,7 +25,8 @@ app.use(session({
 }));
 
 app.use(function(req, res, next) {
-  console.log("Request URL: %s", req.url);
+  console.log("\n---------------- [Split] ----------------");
+  console.log("Request URL: %s, Session ID: %s", req.url, req.sessionID);
   next();
 });
 
