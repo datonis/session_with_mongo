@@ -1,5 +1,5 @@
-session_with_mongo
-==================
+Session with Mongo Database
+===========================
 
 A easy sample of using session with mongo database on Node.js
 
