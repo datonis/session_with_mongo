@@ -5,7 +5,7 @@ var consolidate = require('consolidate');
 var mongodb = require('connect-mongo')(session);
 var bodyParser = require('body-parser');
 var uuid = require('uuid');
-var route = require('./route');
+var route = require('./config/route');
 
 var app = express();
 var port = 1025;
@@ -41,7 +41,6 @@ app.use(function(req, res, next) {
   req.session.cookie.session_id = req.sessionID;
   console.log("\n---------------- [Split] ----------------");
   console.log("Request URL: %s, Session ID: %s", req.url, req.sessionID);
-  console.log(req.body);
   next();
 });
 
