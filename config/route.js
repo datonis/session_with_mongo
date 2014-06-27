@@ -1,4 +1,5 @@
 'usr strict';
+var accountMgr = require('../utils/accountManager');
 
 module.exports = function(app) {
   app.route('/').get(function(req, res) {
@@ -15,8 +16,24 @@ module.exports = function(app) {
     });
   });
 
+  app.route('/logout').get(function(req, res) {
+    /* TODO: Clear login sessions */
+    res.redirect('/');
+  });
+
   app.route('/authenticate').post(function(req, res) {
     console.log(req.body);
-    res.send("Hi, Septem");
+    accountMgr.userAuthenticate(req.body.username, req.body.password, function(err, data) {
+      
+    });
+/*
+    if () {    
+      res.render('logout', function(err, html) {
+        res.send(html);
+      });
+    }
+    else {
+    }
+*/
   });
 };
